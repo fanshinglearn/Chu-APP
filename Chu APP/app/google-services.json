@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "230951421639",
+    "project_id": "chuapp-c8a32",
+    "storage_bucket": "chuapp-c8a32.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:230951421639:android:7b28db03e931e7af10e0e2",
+        "android_client_info": {
+          "package_name": "com.example.chuapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5uLWJ_Hc0hzRBwLjlkglDXIlE6KSN2Zw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
