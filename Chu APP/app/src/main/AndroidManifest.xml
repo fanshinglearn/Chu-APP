@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -33,7 +34,10 @@
             android:name=".Activity.SettingsActivity">
         </activity>
         <activity
-        android:name=".Activity.NewsActivity">
+            android:name=".Activity.TransportationActivity">
+        </activity>
+        <activity
+            android:name=".Activity.NewsActivity">
         </activity>
         <activity
             android:name=".Activity.BuildingsActivity">
