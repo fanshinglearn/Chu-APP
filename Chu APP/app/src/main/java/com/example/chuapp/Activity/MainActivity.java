@@ -34,10 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://www.chu.edu.tw/p/412-1000-522.php?Lang=zh-tw";
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, TransportationActivity.class));
             }
         });
 
