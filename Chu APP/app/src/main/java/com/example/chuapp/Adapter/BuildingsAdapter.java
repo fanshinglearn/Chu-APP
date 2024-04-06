@@ -1,6 +1,7 @@
 package com.example.chuapp.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,13 +42,11 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.View
     public void onBindViewHolder(@NonNull BuildingsAdapter.ViewHolder holder, int position) {
         holder.titleTxt.setText(items.get(position).getTitle());
 
-        int drawableResourceId = holder.itemView.getResources().getIdentifier(items.get(position).getPicPath(),
-                "drawable",holder.itemView.getContext().getPackageName());
-
-        Glide.with(holder.itemView.getContext())
-                .load(drawableResourceId)
+        Uri imageUrl = items.get(position).getImageUrl();
+        // 使用Glide加载图像到ImageView
+        Glide.with(context)
+                .load(imageUrl)
                 .into(holder.pic);
-
     }
 
     @Override
@@ -58,11 +57,11 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView titleTxt;
         ImageView pic;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTxt = itemView.findViewById(R.id.titleTxt);
             pic = itemView.findViewById(R.id.pic);
-
         }
     }
 }

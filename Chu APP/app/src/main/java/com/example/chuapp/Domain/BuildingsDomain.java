@@ -1,12 +1,14 @@
 package com.example.chuapp.Domain;
 
+import android.net.Uri;
+
 public class BuildingsDomain {
     private String title;
-    private String picPath;
+    private Uri imageUrl;
 
-    public BuildingsDomain(String title, String picPath) {
+    public BuildingsDomain(String title, Uri imageUrl) {
         this.title = title;
-        this.picPath = picPath;
+        this.imageUrl = imageUrl;
     }
 
     public String getTitle() {
@@ -17,11 +19,11 @@ public class BuildingsDomain {
         this.title = title;
     }
 
-    public String getPicPath() {
-        return picPath;
+    public Uri getImageUrl() {
+        return imageUrl;
     }
 
-    public void setPicPath(String picPath) {
-        this.picPath = picPath;
+    public void setImageUrl(Uri imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
