@@ -89,6 +89,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        binding.btn3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                startActivity(intent);
+//                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+//            }
+//        });
+
         binding.btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
