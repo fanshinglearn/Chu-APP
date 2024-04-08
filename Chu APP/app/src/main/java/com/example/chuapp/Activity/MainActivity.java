@@ -52,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, MapActivity.class));
+            }
+        });
+
         binding.button7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
