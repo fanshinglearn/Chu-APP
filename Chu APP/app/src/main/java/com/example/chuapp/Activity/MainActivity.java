@@ -69,6 +69,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.facebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.facebook.com/CHU1990/?locale=zh_TW";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        binding.line.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://page.line.me/ncc5585f";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        binding.instagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www.instagram.com/chunghua1990/";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
         binding.btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
