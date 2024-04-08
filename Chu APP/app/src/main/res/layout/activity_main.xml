@@ -144,6 +144,7 @@
                         android:elevation="4dp"
                         android:text="學校網站"
                         android:textColor="@color/black"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button1"
                         app:layout_constraintEnd_toEndOf="@+id/button1"
                         app:layout_constraintStart_toStartOf="@+id/button1" />
@@ -156,6 +157,7 @@
                         android:elevation="4dp"
                         android:text="交通資訊"
                         android:textColor="@color/black"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button2"
                         app:layout_constraintEnd_toEndOf="@+id/button2"
                         app:layout_constraintStart_toStartOf="@+id/button2" />
@@ -168,6 +170,7 @@
                         android:elevation="4dp"
                         android:text="最新消息"
                         android:textColor="@color/black"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button3"
                         app:layout_constraintEnd_toEndOf="@+id/button3"
                         app:layout_constraintStart_toStartOf="@+id/button3" />
@@ -180,6 +183,7 @@
                         android:elevation="4dp"
                         android:text="建築物"
                         android:textColor="@color/black"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button4"
                         app:layout_constraintEnd_toEndOf="@+id/button4"
                         app:layout_constraintStart_toStartOf="@+id/button4" />
@@ -192,6 +196,7 @@
                         android:elevation="4dp"
                         android:text="校園地圖"
                         android:textColor="@color/black"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button5"
                         app:layout_constraintEnd_toEndOf="@+id/button5"
                         app:layout_constraintStart_toStartOf="@+id/button5" />
@@ -204,6 +209,7 @@
                         android:elevation="4dp"
                         android:text="校園美食"
                         android:textColor="@color/black"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button6"
                         app:layout_constraintEnd_toEndOf="@+id/button6"
                         app:layout_constraintStart_toStartOf="@+id/button6" />
@@ -216,6 +222,7 @@
                         android:elevation="4dp"
                         android:text="活動資訊"
                         android:textColor="@color/black"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button7"
                         app:layout_constraintEnd_toEndOf="@+id/button7"
                         app:layout_constraintStart_toStartOf="@+id/button7" />
