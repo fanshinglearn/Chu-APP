@@ -86,7 +86,7 @@ public class BuildingsActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         // 将下载的 URL 传递给 BuildingsDomain 对象
-                                        itemsArraylist.add(new BuildingsDomain(buildingName, uri));
+                                        itemsArraylist.add(new BuildingsDomain(buildingName, uri, buildingAbbreviation));
 
                                         // 在完成所有图片的加载后设置 RecyclerView 的适配器
                                         if (itemsArraylist.size() == task.getResult().size()) {

@@ -42,6 +42,9 @@
         <activity
             android:name=".Activity.BuildingsActivity">
         </activity>
+        <activity
+            android:name=".Activity.BuildingInformationActivity">
+        </activity>
     </application>
 
 </manifest>

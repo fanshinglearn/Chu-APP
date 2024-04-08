@@ -5,11 +5,7 @@ import android.net.Uri;
 public class BuildingsDomain {
     private String title;
     private Uri imageUrl;
-
-    public BuildingsDomain(String title, Uri imageUrl) {
-        this.title = title;
-        this.imageUrl = imageUrl;
-    }
+    private String buildingAbbreviation;
 
     public String getTitle() {
         return title;
@@ -25,5 +21,19 @@ public class BuildingsDomain {
 
     public void setImageUrl(Uri imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getBuildingAbbreviation() {
+        return buildingAbbreviation;
+    }
+
+    public void setBuildingAbbreviation(String buildingAbbreviation) {
+        this.buildingAbbreviation = buildingAbbreviation;
+    }
+
+    public BuildingsDomain(String title, Uri imageUrl, String buildingAbbreviation) {
+        this.title = title;
+        this.imageUrl = imageUrl;
+        this.buildingAbbreviation = buildingAbbreviation;
     }
 }
