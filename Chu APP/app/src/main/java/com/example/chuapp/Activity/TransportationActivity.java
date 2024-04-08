@@ -42,7 +42,6 @@ import java.util.ArrayList;
 
 public class TransportationActivity extends AppCompatActivity {
     ActivityTransportationBinding binding;
-    ImageView testPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,6 @@ public class TransportationActivity extends AppCompatActivity {
         binding = ActivityTransportationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        testPic = binding.testPic;
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,29 +57,93 @@ public class TransportationActivity extends AppCompatActivity {
             }
         });
 
-        // 获取FirebaseStorage实例
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        // 创建StorageReference指向你的文件
-        StorageReference storageRef = storage.getReference().child("buildings/l.jpg");
+//        binding.imageView8.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
-        // 下载文件到本地
-        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+        binding.link1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onSuccess(Uri uri) {
-                // 使用Glide加载图像到ImageView
-                Glide.with(getApplicationContext())
-                        .load(uri)
-                        .apply(new RequestOptions()
-                                .diskCacheStrategy(DiskCacheStrategy.ALL)) // 缓存策略，可根据需要设置
-                        .into(testPic);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // 处理失败情况
-                Toast.makeText(TransportationActivity.this, "下载图片失败", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                String url = "https://www1.chu.edu.tw/p/404-1000-4970.php?Lang=zh-tw#bus01";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
             }
         });
+
+        binding.link2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www1.chu.edu.tw/p/404-1000-4970.php?Lang=zh-tw#bus02";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        binding.link3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www1.chu.edu.tw/p/404-1000-4970.php?Lang=zh-tw#bus03";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        binding.link4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://irs.thsrc.com.tw/IMINT/?locale=tw";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        binding.link5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://tip.railway.gov.tw/tra-tip-web/tip";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        binding.link6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www1.chu.edu.tw/p/404-1000-4970.php?Lang=zh-tw#bus05";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        binding.link7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://tip.railway.gov.tw/tra-tip-web/tip";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
+        binding.link8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://www1.chu.edu.tw/p/404-1000-4970.php?Lang=zh-tw#bus05";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
+
 
         Window window = TransportationActivity.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(TransportationActivity.this, R.color.white));
