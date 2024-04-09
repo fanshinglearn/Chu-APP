@@ -144,7 +144,6 @@ public class TransportationActivity extends AppCompatActivity {
             }
         });
 
-
         Window window = TransportationActivity.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(TransportationActivity.this, R.color.white));
     }

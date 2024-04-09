@@ -76,39 +76,37 @@ public class BuildingsActivity extends AppCompatActivity {
                                 String buildingName = document.getString("building_name");
                                 String buildingAbbreviation = document.getString("building_abbreviation");
 
-                                // 构造 Firebase Storage 中图像的路径
+                                // Firebase Storage 圖像路徑
                                 String imagePath = "buildings/" + buildingAbbreviation + ".jpg";
 
-                                // 获取 Firebase Storage 中图片的下载 URL
+                                // Firebase Storage 圖片的下載 URL
                                 FirebaseStorage storage = FirebaseStorage.getInstance();
                                 StorageReference storageRef = storage.getReference().child(imagePath);
                                 storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
-                                        // 将下载的 URL 传递给 BuildingsDomain 对象
+                                        // 將下載的 URL 傳給 BuildingsDomain
                                         itemsArraylist.add(new BuildingsDomain(buildingName, uri, buildingAbbreviation));
 
-                                        // 在完成所有图片的加载后设置 RecyclerView 的适配器
+                                        // 在完成所有圖片的加載後設置 RecyclerView
                                         if (itemsArraylist.size() == task.getResult().size()) {
                                             int numberOfColumns = 2;
                                             binding.buildingsView.setLayoutManager(new GridLayoutManager(BuildingsActivity.this, numberOfColumns));
 
-                                            // 创建适配器
                                             BuildingsAdapter adapter = new BuildingsAdapter(itemsArraylist);
 
-                                            // 设置适配器
                                             binding.buildingsView.setAdapter(adapter);
                                         }
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        // 处理获取图片 URL 失败的情况
+                                        // 處理獲取圖片 URL 失敗的情況
                                     }
                                 });
                             }
                         } else {
-                            // 处理失败情况
+                            // 處理失敗情況
                         }
                     }
                 });

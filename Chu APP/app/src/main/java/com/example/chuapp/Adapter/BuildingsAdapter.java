@@ -45,7 +45,6 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.View
         holder.titleTxt.setText(items.get(position).getTitle());
 
         Uri imageUrl = items.get(position).getImageUrl();
-        // 使用Glide加载图像到ImageView
         Glide.with(context)
                 .load(imageUrl)
                 .into(holder.pic);
@@ -53,10 +52,9 @@ public class BuildingsAdapter extends RecyclerView.Adapter<BuildingsAdapter.View
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 在点击事件中启动新的活动
                 Context context = holder.itemView.getContext();
                 Intent intent = new Intent(context, BuildingInformationActivity.class);
-                // 传递buildingAbbreviation到BuildingInformationActivity
+                // 傳送 buildingAbbreviation 到 BuildingInformationActivity
                 intent.putExtra("buildingAbbreviation", items.get(position).getBuildingAbbreviation());
                 context.startActivity(intent);
             }

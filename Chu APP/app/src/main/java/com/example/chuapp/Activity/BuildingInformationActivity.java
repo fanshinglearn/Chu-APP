@@ -77,7 +77,7 @@ public class BuildingInformationActivity extends AppCompatActivity {
                                 binding.test.setText(buildingAbbreviation);
                                 };
                         } else {
-                            // 处理失败情况
+
                         }
                     }
                 });
