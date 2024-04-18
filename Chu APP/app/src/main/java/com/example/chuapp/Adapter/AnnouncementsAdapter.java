@@ -11,36 +11,36 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.chuapp.Domain.NewsDomain;
+import com.example.chuapp.Domain.AnnouncementsDomain;
 import com.example.chuapp.R;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
-    ArrayList<NewsDomain> items;
+public class AnnouncementsAdapter extends RecyclerView.Adapter<AnnouncementsAdapter.ViewHolder>{
+    ArrayList<AnnouncementsDomain> items;
     DecimalFormat formatter;
     Context context;
 
-    public NewsAdapter(ArrayList<NewsDomain> items) {
+    public AnnouncementsAdapter(ArrayList<AnnouncementsDomain> items) {
         this.items = items;
         formatter = new DecimalFormat("###,###,###,###.##");
     }
 
     @NonNull
     @Override
-    public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_news,parent,false);
+    public AnnouncementsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_announcements,parent,false);
         context = parent.getContext();
         return new ViewHolder(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AnnouncementsAdapter.ViewHolder holder, int position) {
         holder.dateTxt.setText(items.get(position).getDate());
         holder.titleTxt.setText(items.get(position).getTitle());
 
-        NewsDomain currentItem = items.get(position);
+        AnnouncementsDomain currentItem = items.get(position);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

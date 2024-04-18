@@ -37,7 +37,7 @@
             android:name=".Activity.TransportationActivity">
         </activity>
         <activity
-            android:name=".Activity.NewsActivity">
+            android:name=".Activity.AnnouncementsActivity">
         </activity>
         <activity
             android:name=".Activity.BuildingsActivity">

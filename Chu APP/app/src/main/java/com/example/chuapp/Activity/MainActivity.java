@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         binding.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NewsActivity.class));
+                startActivity(new Intent(MainActivity.this, AnnouncementsActivity.class));
             }
         });
 

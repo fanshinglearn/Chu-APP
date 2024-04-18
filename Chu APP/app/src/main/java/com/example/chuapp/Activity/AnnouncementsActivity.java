@@ -3,22 +3,17 @@ package com.example.chuapp.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.chuapp.Adapter.BuildingsAdapter;
-import com.example.chuapp.Adapter.NewsAdapter;
-import com.example.chuapp.Domain.NewsDomain;
-import com.example.chuapp.Domain.NewsDomain;
+import com.example.chuapp.Adapter.AnnouncementsAdapter;
+import com.example.chuapp.Domain.AnnouncementsDomain;
 import com.example.chuapp.R;
-import com.example.chuapp.databinding.ActivityBuildingsBinding;
-import com.example.chuapp.databinding.ActivityNewsBinding;
+import com.example.chuapp.databinding.ActivityAnnouncementsBinding;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -28,33 +23,33 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class NewsActivity extends AppCompatActivity {
-    ActivityNewsBinding binding;
+public class AnnouncementsActivity extends AppCompatActivity {
+    ActivityAnnouncementsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityNewsBinding.inflate(getLayoutInflater());
+        binding = ActivityAnnouncementsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NewsActivity.this, MainActivity.class));
+                startActivity(new Intent(AnnouncementsActivity.this, MainActivity.class));
             }
         });
 
         initRecyclerView();
 
-        Window window = NewsActivity.this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(NewsActivity.this, R.color.white));
+        Window window = AnnouncementsActivity.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(AnnouncementsActivity.this, R.color.white));
     }
 
     private void initRecyclerView() {
-        new AsyncTask<Void, Void, ArrayList<NewsDomain>>() {
+        new AsyncTask<Void, Void, ArrayList<AnnouncementsDomain>>() {
             @Override
-            protected ArrayList<NewsDomain> doInBackground(Void... voids) {
-                ArrayList<NewsDomain> itemsArrayList = new ArrayList<>();
+            protected ArrayList<AnnouncementsDomain> doInBackground(Void... voids) {
+                ArrayList<AnnouncementsDomain> itemsArrayList = new ArrayList<>();
                 try {
                     String url = "https://www1.chu.edu.tw/app/index.php?Action=mobileloadmod&Type=mobile_rcg_mstr&Nbr=273";
                     Document doc = Jsoup.connect(url).get();
@@ -70,7 +65,7 @@ public class NewsActivity extends AppCompatActivity {
 //                        String subTitle = fullTitle.substring(6);
                         String newUrl = title.attr("href");
                         String dateText = date.text().trim();
-                        itemsArrayList.add(new NewsDomain(dateText, fullTitle, newUrl));
+                        itemsArrayList.add(new AnnouncementsDomain(dateText, fullTitle, newUrl));
                     }
 
                 } catch (IOException e) {
@@ -81,10 +76,10 @@ public class NewsActivity extends AppCompatActivity {
 
 
             @Override
-            protected void onPostExecute(ArrayList<NewsDomain> itemsArrayList) {
+            protected void onPostExecute(ArrayList<AnnouncementsDomain> itemsArrayList) {
                 super.onPostExecute(itemsArrayList);
-                binding.newsView.setLayoutManager(new LinearLayoutManager(NewsActivity.this));
-                binding.newsView.setAdapter(new NewsAdapter(itemsArrayList));
+                binding.newsView.setLayoutManager(new LinearLayoutManager(AnnouncementsActivity.this));
+                binding.newsView.setAdapter(new AnnouncementsAdapter(itemsArrayList));
             }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }

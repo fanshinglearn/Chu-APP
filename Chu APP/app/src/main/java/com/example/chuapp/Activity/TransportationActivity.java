@@ -2,43 +2,15 @@ package com.example.chuapp.Activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.chuapp.Adapter.BuildingsAdapter;
-import com.example.chuapp.Adapter.NewsAdapter;
-import com.example.chuapp.Domain.NewsDomain;
-import com.example.chuapp.Domain.NewsDomain;
 import com.example.chuapp.R;
-import com.example.chuapp.databinding.ActivityBuildingsBinding;
-import com.example.chuapp.databinding.ActivityNewsBinding;
 import com.example.chuapp.databinding.ActivityTransportationBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class TransportationActivity extends AppCompatActivity {
     ActivityTransportationBinding binding;

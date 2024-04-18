@@ -1,13 +1,13 @@
 package com.example.chuapp.Domain;
 
-public class NewsDomain {
+public class AnnouncementsDomain {
 
 
     private String date;
     private String title;
     private String link;
 
-    public NewsDomain(String date, String title, String link) {
+    public AnnouncementsDomain(String date, String title, String link) {
         this.date = date;
         this.title = title;
         this.link = link;
