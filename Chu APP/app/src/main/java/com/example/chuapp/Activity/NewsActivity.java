@@ -50,29 +50,35 @@ public class NewsActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(NewsActivity.this, R.color.white));
     }
 
-
     private void initRecyclerView() {
         new AsyncTask<Void, Void, ArrayList<NewsDomain>>() {
             @Override
             protected ArrayList<NewsDomain> doInBackground(Void... voids) {
                 ArrayList<NewsDomain> itemsArrayList = new ArrayList<>();
                 try {
-                    String url = "https://www.chu.edu.tw/p/403-1000-273-1.php?Lang=zh-tw";
+                    String url = "https://www1.chu.edu.tw/app/index.php?Action=mobileloadmod&Type=mobile_rcg_mstr&Nbr=273";
                     Document doc = Jsoup.connect(url).get();
                     Elements titles = doc.select("div.mtitle a");
 
-                    for (Element title : titles) {
-                        String fullTitle = title.attr("title");
-                        String subType = fullTitle.substring(1, 5);
-                        String subTitle = fullTitle.substring(6);
+                    Elements dates = doc.select("i.mdate.after");
+
+                    for (int i = 0; i < titles.size(); i++) {
+                        Element title = titles.get(i);
+                        Element date = dates.get(i);
+                        String fullTitle = title.text().trim();
+//                        String subType = fullTitle.substring(1, 5);
+//                        String subTitle = fullTitle.substring(6);
                         String newUrl = title.attr("href");
-                        itemsArrayList.add(new NewsDomain(subType, subTitle, newUrl)); // 將標題添加到列表中
+                        String dateText = date.text().trim();
+                        itemsArrayList.add(new NewsDomain(dateText, fullTitle, newUrl));
                     }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return itemsArrayList;
             }
+
 
             @Override
             protected void onPostExecute(ArrayList<NewsDomain> itemsArrayList) {
@@ -80,6 +86,7 @@ public class NewsActivity extends AppCompatActivity {
                 binding.newsView.setLayoutManager(new LinearLayoutManager(NewsActivity.this));
                 binding.newsView.setAdapter(new NewsAdapter(itemsArrayList));
             }
-        }.execute();
+        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
+
 }

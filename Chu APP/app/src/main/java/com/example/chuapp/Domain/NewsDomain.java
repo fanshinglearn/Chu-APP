@@ -3,22 +3,22 @@ package com.example.chuapp.Domain;
 public class NewsDomain {
 
 
-    private String type;
+    private String date;
     private String title;
     private String link;
 
-    public NewsDomain(String type, String title, String link) {
-        this.type = type;
+    public NewsDomain(String date, String title, String link) {
+        this.date = date;
         this.title = title;
         this.link = link;
     }
 
-    public String getType() {
-        return type;
+    public String getDate() {
+        return date;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTitle() {

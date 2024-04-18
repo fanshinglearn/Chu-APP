@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +37,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder holder, int position) {
-        holder.typeTxt.setText(items.get(position).getType());
+        holder.dateTxt.setText(items.get(position).getDate());
         holder.titleTxt.setText(items.get(position).getTitle());
 
         NewsDomain currentItem = items.get(position);
@@ -60,12 +59,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView typeTxt;
+        TextView dateTxt;
         TextView titleTxt;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            typeTxt = itemView.findViewById(R.id.typeTxt);
+            dateTxt = itemView.findViewById(R.id.dateTxt);
             titleTxt = itemView.findViewById(R.id.titleTxt);
         }
     }
