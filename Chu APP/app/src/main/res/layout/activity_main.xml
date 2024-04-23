@@ -134,13 +134,36 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button8"
+                        android:layout_width="110dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/main_screen_button"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintEnd_toStartOf="@+id/button9"
+                        app:layout_constraintHorizontal_bias="0.506"
+                        app:layout_constraintStart_toEndOf="@+id/button7"
+                        app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button9"
+                        android:layout_width="110dp"
+                        android:layout_height="100dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/main_screen_button"
+                        android:backgroundTint="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/button6" />
+
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:elevation="4dp"
-                        android:text="學校網站"
+                        android:elevation="8dp"
+                        android:text="最新消息"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button1"
@@ -152,8 +175,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:elevation="4dp"
-                        android:text="交通資訊"
+                        android:elevation="8dp"
+                        android:text="即時新聞"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button2"
@@ -165,8 +188,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:elevation="4dp"
-                        android:text="最新消息"
+                        android:elevation="8dp"
+                        android:text="媒體報導"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button3"
@@ -178,7 +201,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         android:text="建築物"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -191,7 +214,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         android:text="校園地圖"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -204,7 +227,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         android:text="校園美食"
                         android:textColor="@color/black"
                         android:textSize="14sp"
@@ -217,53 +240,78 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:elevation="4dp"
-                        android:text="活動資訊"
+                        android:elevation="8dp"
+                        android:text="交通資訊"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button7"
                         app:layout_constraintEnd_toEndOf="@+id/button7"
                         app:layout_constraintStart_toStartOf="@+id/button7" />
 
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:elevation="8dp"
+                        android:text="活動資訊"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/button8"
+                        app:layout_constraintEnd_toEndOf="@+id/button8"
+                        app:layout_constraintStart_toStartOf="@+id/button8" />
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/textView13"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="8dp"-->
+<!--                        android:elevation="4dp"-->
+<!--                        android:text="活動資訊"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="14sp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/button9"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/button9"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/button9" />-->
 
                     <ImageView
                         android:id="@+id/imageView1"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/button1"
                         app:layout_constraintEnd_toEndOf="@+id/button1"
                         app:layout_constraintStart_toStartOf="@+id/button1"
                         app:layout_constraintTop_toTopOf="@+id/button1"
-                        app:srcCompat="@drawable/website" />
+                        app:srcCompat="@drawable/announcements" />
 
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/button2"
                         app:layout_constraintEnd_toEndOf="@+id/button2"
                         app:layout_constraintStart_toStartOf="@+id/button2"
                         app:layout_constraintTop_toTopOf="@+id/button2"
-                        app:srcCompat="@drawable/transportation" />
+                        app:srcCompat="@drawable/news" />
 
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/button3"
                         app:layout_constraintEnd_toEndOf="@+id/button3"
                         app:layout_constraintStart_toStartOf="@+id/button3"
                         app:layout_constraintTop_toTopOf="@+id/button3"
-                        app:srcCompat="@drawable/news" />
+                        app:srcCompat="@drawable/reports" />
 
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/button4"
                         app:layout_constraintEnd_toEndOf="@+id/button4"
                         app:layout_constraintStart_toStartOf="@+id/button4"
@@ -274,7 +322,7 @@
                         android:id="@+id/imageView5"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/button5"
                         app:layout_constraintEnd_toEndOf="@+id/button5"
                         app:layout_constraintStart_toStartOf="@+id/button5"
@@ -285,7 +333,7 @@
                         android:id="@+id/imageView6"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/button6"
                         app:layout_constraintEnd_toEndOf="@+id/button6"
                         app:layout_constraintStart_toStartOf="@+id/button6"
@@ -296,12 +344,34 @@
                         android:id="@+id/imageView7"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:elevation="4dp"
+                        android:elevation="8dp"
                         app:layout_constraintBottom_toBottomOf="@+id/button7"
                         app:layout_constraintEnd_toEndOf="@+id/button7"
                         app:layout_constraintStart_toStartOf="@+id/button7"
                         app:layout_constraintTop_toTopOf="@+id/button7"
+                        app:srcCompat="@drawable/transportation" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:elevation="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/button8"
+                        app:layout_constraintEnd_toEndOf="@+id/button8"
+                        app:layout_constraintStart_toStartOf="@+id/button8"
+                        app:layout_constraintTop_toTopOf="@+id/button8"
                         app:srcCompat="@drawable/activity" />
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView9"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:elevation="4dp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/button9"-->
+<!--                        app:layout_constraintEnd_toEndOf="@+id/button9"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/button9"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/button9"-->
+<!--                        app:srcCompat="@drawable/website" />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

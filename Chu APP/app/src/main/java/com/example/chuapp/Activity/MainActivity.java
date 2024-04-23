@@ -24,24 +24,26 @@ public class MainActivity extends AppCompatActivity {
         binding.button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://www.chu.edu.tw/";
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
+                //中華大學網站
+//                String url = "https://www.chu.edu.tw/";
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setData(Uri.parse(url));
+//                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, AnnouncementsActivity.class));
             }
         });
 
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TransportationActivity.class));
+                startActivity(new Intent(MainActivity.this, NewsActivity.class));
             }
         });
 
         binding.button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AnnouncementsActivity.class));
+                startActivity(new Intent(MainActivity.this, ReportsActivity.class));
             }
         });
 
@@ -59,13 +61,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        binding.button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         binding.button7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TransportationActivity.class));
+            }
+        });
+
+        binding.button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = "https://event.chu.edu.tw/ca/default.aspx";
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
+            }
+        });
+
+        binding.button9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
