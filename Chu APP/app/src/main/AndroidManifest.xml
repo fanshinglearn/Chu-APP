@@ -34,10 +34,13 @@
             android:name=".Activity.SettingsActivity">
         </activity>
         <activity
-            android:name=".Activity.TransportationActivity">
+            android:name=".Activity.AnnouncementsActivity">
         </activity>
         <activity
-            android:name=".Activity.AnnouncementsActivity">
+            android:name=".Activity.NewsActivity">
+        </activity>
+        <activity
+            android:name=".Activity.ReportsActivity">
         </activity>
         <activity
             android:name=".Activity.BuildingsActivity">
@@ -47,6 +50,9 @@
         </activity>
         <activity
             android:name=".Activity.MapActivity">
+        </activity>
+        <activity
+            android:name=".Activity.TransportationActivity">
         </activity>
     </application>
 
