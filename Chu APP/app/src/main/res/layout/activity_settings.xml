@@ -12,12 +12,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="設定"
-        android:textSize="20sp"
         android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="bottom"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:backgroundTint="@color/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
