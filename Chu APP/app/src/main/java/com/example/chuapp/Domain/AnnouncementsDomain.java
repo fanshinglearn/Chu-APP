@@ -1,8 +1,6 @@
 package com.example.chuapp.Domain;
 
 public class AnnouncementsDomain {
-
-
     private String date;
     private String title;
     private String link;

@@ -78,8 +78,8 @@ public class AnnouncementsActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(ArrayList<AnnouncementsDomain> itemsArrayList) {
                 super.onPostExecute(itemsArrayList);
-                binding.newsView.setLayoutManager(new LinearLayoutManager(AnnouncementsActivity.this));
-                binding.newsView.setAdapter(new AnnouncementsAdapter(itemsArrayList));
+                binding.announcementsView.setLayoutManager(new LinearLayoutManager(AnnouncementsActivity.this));
+                binding.announcementsView.setAdapter(new AnnouncementsAdapter(itemsArrayList));
             }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
