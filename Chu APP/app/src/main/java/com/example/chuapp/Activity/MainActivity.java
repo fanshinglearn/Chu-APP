@@ -8,7 +8,9 @@ import android.view.Window;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
+import com.example.chuapp.Adapter.CustomPagerAdapter;
 import com.example.chuapp.R;
 import com.example.chuapp.databinding.ActivityMainBinding;
 
@@ -20,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        CustomPagerAdapter adapter = new CustomPagerAdapter(this);
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        viewPager.setAdapter(adapter);
+
 
         binding.button1.setOnClickListener(new View.OnClickListener() {
             @Override
