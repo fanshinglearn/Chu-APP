@@ -35,7 +35,7 @@ public class AnnouncementsActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AnnouncementsActivity.this, MainActivity.class));
+                finish();
             }
         });
 
@@ -63,7 +63,12 @@ public class AnnouncementsActivity extends AppCompatActivity {
                         String fullTitle = title.text().trim();
 //                        String subType = fullTitle.substring(1, 5);
 //                        String subTitle = fullTitle.substring(6);
+
                         String newUrl = title.attr("href");
+                        if (!newUrl.startsWith("http://") && !newUrl.startsWith("https://")) {
+                            newUrl = "https://www1.chu.edu.tw" + newUrl;
+                        }
+
                         String dateText = date.text().trim();
                         itemsArrayList.add(new AnnouncementsDomain(dateText, fullTitle, newUrl));
                     }
