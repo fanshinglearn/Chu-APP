@@ -35,7 +35,7 @@ public class ReportsActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReportsActivity.this, MainActivity.class));
+                finish();
             }
         });
 

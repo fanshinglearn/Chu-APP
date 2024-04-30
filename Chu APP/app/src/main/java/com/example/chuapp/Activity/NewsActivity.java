@@ -35,7 +35,7 @@ public class NewsActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(NewsActivity.this, MainActivity.class));
+                finish();
             }
         });
 

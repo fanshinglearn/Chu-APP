@@ -23,7 +23,7 @@ public class MapActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MapActivity.this, MainActivity.class));
+                finish();
             }
         });
 
