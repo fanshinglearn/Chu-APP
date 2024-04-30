@@ -27,6 +27,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -51,7 +52,7 @@ public class BuildingsActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(BuildingsActivity.this, MainActivity.class));
+                finish();
             }
         });
 
@@ -61,9 +62,8 @@ public class BuildingsActivity extends AppCompatActivity {
         window.setStatusBarColor(ContextCompat.getColor(BuildingsActivity.this, R.color.white));
     }
 
-
     private void initRecyclerView() {
-        ArrayList<BuildingsDomain> itemsArraylist = new ArrayList<>();
+        ArrayList<BuildingsDomain> itemsArrayList = new ArrayList<>();
 
         db.collection("buildings")
                 .get()
@@ -71,10 +71,12 @@ public class BuildingsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<com.google.firebase.firestore.QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            StringBuilder result = new StringBuilder();
+                            int totalItems = task.getResult().size();
+                            AtomicInteger completedItems = new AtomicInteger(0);
+
                             for (DocumentSnapshot document : task.getResult()) {
                                 String buildingName = document.getString("building_name");
-                                String buildingAbbreviation = document.getString("building_abbreviation");
+                                String buildingAbbreviation = document.getId();
 
                                 // Firebase Storage 圖像路徑
                                 String imagePath = "buildings/" + buildingAbbreviation + ".jpg";
@@ -86,22 +88,24 @@ public class BuildingsActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(Uri uri) {
                                         // 將下載的 URL 傳給 BuildingsDomain
-                                        itemsArraylist.add(new BuildingsDomain(buildingName, uri, buildingAbbreviation));
+                                        itemsArrayList.add(new BuildingsDomain(buildingName, uri, buildingAbbreviation));
 
-                                        // 在完成所有圖片的加載後設置 RecyclerView
-                                        if (itemsArraylist.size() == task.getResult().size()) {
-                                            int numberOfColumns = 2;
-                                            binding.buildingsView.setLayoutManager(new GridLayoutManager(BuildingsActivity.this, numberOfColumns));
-
-                                            BuildingsAdapter adapter = new BuildingsAdapter(itemsArraylist);
-
-                                            binding.buildingsView.setAdapter(adapter);
+                                        if (completedItems.incrementAndGet() == totalItems) {
+                                            // 在完成所有圖片的加載後設置 RecyclerView
+                                            setRecyclerView(itemsArrayList);
                                         }
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        // 處理獲取圖片 URL 失敗的情況
+                                        // 找不到圖片，使用預設圖片
+                                        Uri defaultImageUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.default_image);
+                                        itemsArrayList.add(new BuildingsDomain(buildingName, defaultImageUri, buildingAbbreviation));
+
+                                        if (completedItems.incrementAndGet() == totalItems) {
+                                            // 在完成所有圖片的加載後設置 RecyclerView
+                                            setRecyclerView(itemsArrayList);
+                                        }
                                     }
                                 });
                             }
@@ -111,6 +115,14 @@ public class BuildingsActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void setRecyclerView(ArrayList<BuildingsDomain> itemsArrayList) {
+        int numberOfColumns = 2;
+        binding.buildingsView.setLayoutManager(new GridLayoutManager(BuildingsActivity.this, numberOfColumns));
+        BuildingsAdapter adapter = new BuildingsAdapter(itemsArrayList);
+        binding.buildingsView.setAdapter(adapter);
+    }
+
 
 
 
