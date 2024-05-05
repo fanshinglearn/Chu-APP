@@ -3,6 +3,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
 import com.example.chuapp.R;
@@ -28,9 +31,15 @@ public class CustomPagerAdapter extends PagerAdapter {
     private Context mContext;
     private List<String> mImageUrls = new ArrayList<>();
     private List<String> mHyperLinks = new ArrayList<>();
+    private ViewPager mViewPager;
+    private Handler mHandler;
+    private int mCurrentPage = 0;
+    private boolean mIsAutoPlay = false;
 
-    public CustomPagerAdapter(Context context) {
+    public CustomPagerAdapter(Context context, ViewPager viewPager) {
         mContext = context;
+        mViewPager = viewPager;
+        mHandler = new Handler(Looper.getMainLooper());
         new ImageUrlAsyncTask().execute();
     }
 
@@ -78,6 +87,31 @@ public class CustomPagerAdapter extends PagerAdapter {
         return view == object;
     }
 
+    public void startAutoPlay() {
+        if (!mIsAutoPlay) {
+            mIsAutoPlay = true;
+            mHandler.postDelayed(autoPlayRunnable, 1000);
+        }
+    }
+
+    public void stopAutoPlay() {
+        if (mIsAutoPlay) {
+            mIsAutoPlay = false;
+            mHandler.removeCallbacks(autoPlayRunnable);
+        }
+    }
+
+    private Runnable autoPlayRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (mIsAutoPlay) {
+                mCurrentPage = (mCurrentPage + 1) % getCount();
+                mViewPager.setCurrentItem(mCurrentPage, true);
+                mHandler.postDelayed(this, 3000);
+            }
+        }
+    };
+
     private class ImageUrlAsyncTask extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -109,6 +143,12 @@ public class CustomPagerAdapter extends PagerAdapter {
         @Override
         protected void onPostExecute(Void aVoid) {
             notifyDataSetChanged();
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startAutoPlay(); // 開始自動播放
+                }
+            }, 5000); // 延遲5秒後開始自動播放
         }
     }
 }
