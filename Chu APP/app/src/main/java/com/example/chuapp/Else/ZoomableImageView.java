@@ -1,13 +1,24 @@
 package com.example.chuapp.Else;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import androidx.appcompat.widget.AppCompatImageView;
 import android.view.MotionEvent;
+import android.view.View;
+
+import com.example.chuapp.Activity.MainActivity;
 
 public class ZoomableImageView extends AppCompatImageView {
+    private RectF clickableArea = new RectF(1000, 1000, 3000, 3000);
+    private PointF lastTouchDown = new PointF();
     private Matrix matrix = new Matrix();
     private Matrix savedMatrix = new Matrix();
 
@@ -36,55 +47,114 @@ public class ZoomableImageView extends AppCompatImageView {
 
     private void init() {
         setScaleType(ScaleType.MATRIX);
-        setOnTouchListener((v, event) -> {
-            switch (event.getAction() & MotionEvent.ACTION_MASK) {
-                case MotionEvent.ACTION_DOWN:
-                    savedMatrix.set(matrix);
-                    start.set(event.getX(), event.getY());
-                    mode = DRAG;
-                    break;
-                case MotionEvent.ACTION_POINTER_DOWN:
-                    oldDist = spacing(event);
-                    if (oldDist > 10f) {
-                        savedMatrix.set(matrix);
-                        midPoint(mid, event);
-                        mode = ZOOM;
-                    }
-                    break;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_POINTER_UP:
-                    mode = NONE;
-                    break;
-                case MotionEvent.ACTION_MOVE:
-                    if (mode == DRAG) {
-                        matrix.set(savedMatrix);
-                        matrix.postTranslate(event.getX() - start.x, event.getY() - start.y);
-                    } else if (mode == ZOOM) {
-                        float newDist = spacing(event);
-                        if (newDist > 10f) {
-                            matrix.set(savedMatrix);
-                            float scale = newDist / oldDist;
-                            float[] values = new float[9];
-                            matrix.getValues(values);
-                            float currentScale = values[Matrix.MSCALE_X];
-                            if (currentScale * scale > MAX_SCALE) {
-                                scale = MAX_SCALE / currentScale;
-                            } else if (currentScale * scale < MIN_SCALE) {
-                                scale = MIN_SCALE / currentScale;
-                            }
-                            matrix.postScale(scale, scale, mid.x, mid.y);
-                        }
-                    }
-                    break;
-            }
+        setOnTouchListener(new OnTouchListener() {
+            private float startX;
+            private float startY;
+            private boolean isClick;
 
-            setImageMatrix(matrix);
-            return true;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        startX = event.getX();
+                        startY = event.getY();
+                        isClick = true;
+                        savedMatrix.set(matrix);
+                        start.set(event.getX(), event.getY());
+                        mode = DRAG;
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        if (Math.abs(startX - event.getX()) > 5 || Math.abs(startY - event.getY()) > 5) {
+                            isClick = false;
+                        }
+                        if (mode == DRAG) {
+                            matrix.set(savedMatrix);
+                            float dx = event.getX() - start.x;
+                            float dy = event.getY() - start.y;
+
+                            // 檢查邊界
+                            RectF imageRect = getImageRect(matrix);
+                            if (imageRect.width() <= getWidth()) {
+                                dx = 0;
+                            } else {
+                                if (imageRect.left + dx > 0) {
+                                    dx = -imageRect.left;
+                                } else if (imageRect.right + dx < getWidth()) {
+                                    dx = getWidth() - imageRect.right;
+                                }
+                            }
+                            if (imageRect.height() <= getHeight()) {
+                                dy = 0;
+                            } else {
+                                if (imageRect.top + dy > 0) {
+                                    dy = -imageRect.top;
+                                } else if (imageRect.bottom + dy < getHeight()) {
+                                    dy = getHeight() - imageRect.bottom;
+                                }
+                            }
+                            matrix.postTranslate(dx, dy);
+                        } else if (mode == ZOOM) {
+                            // Zooming logic...
+                        }
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        if (isClick) {
+                            // 點擊事件處理
+                            float[] pts = {event.getX(), event.getY()};
+                            Matrix inverse = new Matrix();
+                            matrix.invert(inverse);
+                            inverse.mapPoints(pts);
+                            float x = pts[0];
+                            float y = pts[1];
+                            if (clickableArea.contains(x, y)) {
+                                Context context = getContext();
+                                Intent intent = new Intent(context, MainActivity.class);
+                                context.startActivity(intent);
+                                return true; // 如果點擊區域內，返回 true，表示已處理點擊事件
+                            }
+                        }
+                        break;
+                    case MotionEvent.ACTION_POINTER_DOWN:
+                        oldDist = spacing(event);
+                        if (oldDist > 10f) {
+                            savedMatrix.set(matrix);
+                            midPoint(mid, event);
+                            mode = ZOOM;
+                        }
+                        break;
+                    case MotionEvent.ACTION_POINTER_UP:
+                        mode = NONE;
+                        break;
+                }
+
+                setImageMatrix(matrix);
+                return true;
+            }
         });
 
         // 初始化縮放
         matrix.postScale(INITIAL_SCALE, INITIAL_SCALE);
         setImageMatrix(matrix);
+    }
+
+    private void drawClickableArea(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.RED);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(5);
+
+        // 將原始的可點擊區域映射到當前的圖像上
+        RectF mappedArea = new RectF();
+        matrix.mapRect(mappedArea, clickableArea);
+
+        canvas.drawRect(mappedArea, paint);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        drawClickableArea(canvas);
     }
 
     private float spacing(MotionEvent event) {
@@ -98,4 +168,16 @@ public class ZoomableImageView extends AppCompatImageView {
         float y = event.getY(0) + event.getY(1);
         point.set(x / 2, y / 2);
     }
+
+    private RectF getImageRect(Matrix matrix) {
+        Drawable drawable = getDrawable();
+        if (drawable == null) {
+            return new RectF();
+        }
+        RectF rectF = new RectF(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        matrix.mapRect(rectF);
+        return rectF;
+    }
+
+
 }

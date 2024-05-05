@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        CustomPagerAdapter adapter = new CustomPagerAdapter(this);
         ViewPager viewPager = findViewById(R.id.viewPager);
+        CustomPagerAdapter adapter = new CustomPagerAdapter(this, viewPager);
         viewPager.setAdapter(adapter);
 
 
