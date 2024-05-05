@@ -10,14 +10,18 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import androidx.appcompat.widget.AppCompatImageView;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
+import com.example.chuapp.Activity.BuildingInformationActivity;
 import com.example.chuapp.Activity.MainActivity;
 
+import java.util.ArrayList;
+
 public class ZoomableImageView extends AppCompatImageView {
-    private RectF clickableArea = new RectF(1000, 1000, 3000, 3000);
+    private ArrayList<ClickableArea> clickableAreas = new ArrayList<>();
     private PointF lastTouchDown = new PointF();
     private Matrix matrix = new Matrix();
     private Matrix savedMatrix = new Matrix();
@@ -47,6 +51,24 @@ public class ZoomableImageView extends AppCompatImageView {
 
     private void init() {
         setScaleType(ScaleType.MATRIX);
+
+        // 添加可點擊區域
+        clickableAreas.add(new ClickableArea("d4", new RectF(1000, 4000, 2000, 5000)));
+        clickableAreas.add(new ClickableArea("d3", new RectF(3000, 1000, 4000, 2000)));
+        clickableAreas.add(new ClickableArea("d1", new RectF(5000, 1000, 6000, 2000)));
+        clickableAreas.add(new ClickableArea("d2", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("a", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("m1", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("m2", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("s", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("l", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("n", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("e", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("g", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("i", new RectF(7000, 1000, 8000, 2000)));
+        clickableAreas.add(new ClickableArea("f", new RectF(7000, 1000, 8000, 2000)));
+        // 添加更多可點擊區域...
+
         setOnTouchListener(new OnTouchListener() {
             private float startX;
             private float startY;
@@ -107,11 +129,16 @@ public class ZoomableImageView extends AppCompatImageView {
                             inverse.mapPoints(pts);
                             float x = pts[0];
                             float y = pts[1];
-                            if (clickableArea.contains(x, y)) {
-                                Context context = getContext();
-                                Intent intent = new Intent(context, MainActivity.class);
-                                context.startActivity(intent);
-                                return true; // 如果點擊區域內，返回 true，表示已處理點擊事件
+                            // 檢查點擊位置與各個可點擊區域的交集
+                            for (ClickableArea clickableArea : clickableAreas) {
+                                if (clickableArea.rect.contains(x, y)) {
+                                    // 在點擊區域內，傳遞相應的值到 Activity
+                                    Context context = getContext();
+                                    Intent intent = new Intent(context, BuildingInformationActivity.class);
+                                    intent.putExtra("buildingAbbreviation", clickableArea.name); // 傳遞可點擊區域的名稱
+                                    context.startActivity(intent);
+                                    return true; // 如果點擊區域內，返回 true，表示已處理點擊事件
+                                }
                             }
                         }
                         break;
@@ -138,23 +165,24 @@ public class ZoomableImageView extends AppCompatImageView {
         setImageMatrix(matrix);
     }
 
-    private void drawClickableArea(Canvas canvas) {
+    private void drawClickableAreas(Canvas canvas) {
         Paint paint = new Paint();
         paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
 
-        // 將原始的可點擊區域映射到當前的圖像上
-        RectF mappedArea = new RectF();
-        matrix.mapRect(mappedArea, clickableArea);
-
-        canvas.drawRect(mappedArea, paint);
+        for (ClickableArea clickableArea : clickableAreas) {
+            // 將原始的可點擊區域映射到當前的圖像上
+            RectF mappedArea = new RectF();
+            matrix.mapRect(mappedArea, clickableArea.rect);
+            canvas.drawRect(mappedArea, paint);
+        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawClickableArea(canvas);
+        drawClickableAreas(canvas);
     }
 
     private float spacing(MotionEvent event) {
@@ -179,5 +207,13 @@ public class ZoomableImageView extends AppCompatImageView {
         return rectF;
     }
 
+    private static class ClickableArea {
+        String name;
+        RectF rect;
 
+        ClickableArea(String name, RectF rect) {
+            this.name = name;
+            this.rect = rect;
+        }
+    }
 }
