@@ -1,5 +1,7 @@
 package com.example.chuapp.Else;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -10,15 +12,25 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.example.chuapp.Activity.BuildingInformationActivity;
 import com.example.chuapp.Activity.MainActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ZoomableImageView extends AppCompatImageView {
     private ArrayList<ClickableArea> clickableAreas = new ArrayList<>();
@@ -52,22 +64,43 @@ public class ZoomableImageView extends AppCompatImageView {
     private void init() {
         setScaleType(ScaleType.MATRIX);
 
-        // 添加可點擊區域
-        clickableAreas.add(new ClickableArea("d4", new RectF(1000, 4000, 2000, 5000)));
-        clickableAreas.add(new ClickableArea("d3", new RectF(3000, 1000, 4000, 2000)));
-        clickableAreas.add(new ClickableArea("d1", new RectF(5000, 1000, 6000, 2000)));
-        clickableAreas.add(new ClickableArea("d2", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("a", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("m1", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("m2", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("s", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("l", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("n", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("e", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("g", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("i", new RectF(7000, 1000, 8000, 2000)));
-        clickableAreas.add(new ClickableArea("f", new RectF(7000, 1000, 8000, 2000)));
-        // 添加更多可點擊區域...
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference buildingsRef = db.collection("buildings");
+        buildingsRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String buildingId = document.getId();
+                        // 檢查 coordinates 映射是否存在並且有效
+                        Object coordinatesObject = document.getData().get("coordinates");
+                        if (coordinatesObject instanceof Map) {
+                            Map<String, Object> coordinatesMap = (Map<String, Object>) coordinatesObject;
+                            if (coordinatesMap.containsKey("left") && coordinatesMap.containsKey("top") && coordinatesMap.containsKey("right") && coordinatesMap.containsKey("bottom")) {
+                                try {
+                                    double left = ((Number) coordinatesMap.get("left")).doubleValue();
+                                    double top = ((Number) coordinatesMap.get("top")).doubleValue();
+                                    double right = ((Number) coordinatesMap.get("right")).doubleValue();
+                                    double bottom = ((Number) coordinatesMap.get("bottom")).doubleValue();
+                                    RectF rect = new RectF((float) left, (float) top, (float) right, (float) bottom);
+                                    clickableAreas.add(new ClickableArea(buildingId, rect));
+                                } catch (ClassCastException e) {
+                                    Log.e(TAG, "Error casting coordinates to Double: " + e.getMessage());
+                                }
+                            } else {
+                                Log.d(TAG, "Building " + buildingId + " does not have valid coordinates. Skipping.");
+                            }
+                        } else {
+                            Log.d(TAG, "Building " + buildingId + " does not have coordinates. Skipping.");
+                        }
+                    }
+                    // 在這裡更新 UI 或執行其他操作
+                    invalidate();
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
 
         setOnTouchListener(new OnTouchListener() {
             private float startX;
