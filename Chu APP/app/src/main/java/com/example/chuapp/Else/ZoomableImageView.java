@@ -198,25 +198,25 @@ public class ZoomableImageView extends AppCompatImageView {
         setImageMatrix(matrix);
     }
 
-    private void drawClickableAreas(Canvas canvas) {
-        Paint paint = new Paint();
-        paint.setColor(Color.RED);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
-
-        for (ClickableArea clickableArea : clickableAreas) {
-            // 將原始的可點擊區域映射到當前的圖像上
-            RectF mappedArea = new RectF();
-            matrix.mapRect(mappedArea, clickableArea.rect);
-            canvas.drawRect(mappedArea, paint);
-        }
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        drawClickableAreas(canvas);
-    }
+//    private void drawClickableAreas(Canvas canvas) {
+//        Paint paint = new Paint();
+//        paint.setColor(Color.RED);
+//        paint.setStyle(Paint.Style.STROKE);
+//        paint.setStrokeWidth(5);
+//
+//        for (ClickableArea clickableArea : clickableAreas) {
+//            // 將原始的可點擊區域映射到當前的圖像上
+//            RectF mappedArea = new RectF();
+//            matrix.mapRect(mappedArea, clickableArea.rect);
+//            canvas.drawRect(mappedArea, paint);
+//        }
+//    }
+//
+//    @Override
+//    protected void onDraw(Canvas canvas) {
+//        super.onDraw(canvas);
+//        drawClickableAreas(canvas);
+//    }
 
     private float spacing(MotionEvent event) {
         float x = event.getX(0) - event.getX(1);
