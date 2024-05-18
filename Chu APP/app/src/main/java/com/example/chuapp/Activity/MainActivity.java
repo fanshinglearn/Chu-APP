@@ -126,51 +126,51 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
-
-        binding.btn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
-
-        binding.btn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
-
+//        binding.btn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, MainActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        binding.btn2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                startActivity(intent);
+//            }
+//        });
+//
 //        binding.btn3.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 //                startActivity(intent);
-//                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
 //            }
 //        });
-
-        binding.btn4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
+//
+////        binding.btn3.setOnClickListener(new View.OnClickListener() {
+////            @Override
+////            public void onClick(View v) {
+////                Intent intent = new Intent(MainActivity.this, FavoritesActivity.class);
+////                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+////                startActivity(intent);
+////                overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+////            }
+////        });
+//
+//        binding.btn4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                startActivity(intent);
+//            }
+//        });
 
         Window window = MainActivity.this.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(MainActivity.this, R.color.black));
