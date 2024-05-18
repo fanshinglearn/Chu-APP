@@ -57,6 +57,9 @@
         <activity
             android:name=".Activity.TransportationActivity">
         </activity>
+        <activity
+            android:name=".Activity.EventsActivity">
+        </activity>
     </application>
 
 </manifest>

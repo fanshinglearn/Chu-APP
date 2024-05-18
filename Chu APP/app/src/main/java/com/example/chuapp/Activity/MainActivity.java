@@ -85,10 +85,7 @@ public class MainActivity extends AppCompatActivity {
         binding.button8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://event.chu.edu.tw/ca/default.aspx";
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
-                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, EventsActivity.class));
             }
         });
 
