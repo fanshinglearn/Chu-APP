@@ -31,11 +31,6 @@ public class MainActivity extends AppCompatActivity {
         binding.button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //中華大學網站
-//                String url = "https://www.chu.edu.tw/";
-//                Intent intent = new Intent(Intent.ACTION_VIEW);
-//                intent.setData(Uri.parse(url));
-//                startActivity(intent);
                 startActivity(new Intent(MainActivity.this, AnnouncementsActivity.class));
             }
         });
@@ -93,6 +88,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        binding.button32.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 中華大學網站
+                String url = "https://www.chu.edu.tw/";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
             }
         });
 

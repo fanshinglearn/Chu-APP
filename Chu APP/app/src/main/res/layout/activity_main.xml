@@ -107,7 +107,6 @@
                         android:background="@drawable/main_screen_button"
                         android:backgroundTint="@color/white"
                         app:layout_constraintEnd_toStartOf="@+id/button6"
-                        app:layout_constraintHorizontal_bias="0.506"
                         app:layout_constraintStart_toEndOf="@+id/button4"
                         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
@@ -376,10 +375,10 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="300dp">
 
                     <View
-                        android:id="@+id/view6"
+                        android:id="@+id/view5"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginStart="32dp"
@@ -388,6 +387,41 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button32"
+                        android:layout_width="320dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/red_rectangle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/view5" />
+
+                    <TextView
+                        android:id="@+id/textView32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="中華大學網頁"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:elevation="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/button32"
+                        app:layout_constraintEnd_toEndOf="@+id/button32"
+                        app:layout_constraintStart_toStartOf="@+id/button32"
+                        app:layout_constraintTop_toTopOf="@+id/button32" />
+
+                    <View
+                        android:id="@+id/view6"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@color/gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/button32" />
 
                     <TextView
                         android:id="@+id/textView19"
@@ -399,7 +433,7 @@
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/view6" />
 
                     <View
                         android:id="@+id/view7"
