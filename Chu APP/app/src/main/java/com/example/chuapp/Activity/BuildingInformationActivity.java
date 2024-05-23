@@ -15,7 +15,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.example.chuapp.R;
-import com.example.chuapp.databinding.ActivityBuildingsImformationBinding;
+import com.example.chuapp.databinding.ActivityBuildingsInformationBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -27,13 +27,13 @@ import com.google.firebase.storage.StorageReference;
 import java.util.Map;
 
 public class BuildingInformationActivity extends AppCompatActivity {
-    ActivityBuildingsImformationBinding binding;
+    ActivityBuildingsInformationBinding binding;
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityBuildingsImformationBinding.inflate(getLayoutInflater());
+        binding = ActivityBuildingsInformationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
