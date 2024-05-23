@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.chuapp.Activity.BuildingInformationActivity;
+import com.example.chuapp.Activity.RestaurantInformationActivity;
 import com.example.chuapp.Domain.RestaurantsDomain;
 import com.example.chuapp.R;
 
@@ -47,16 +47,16 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
                 .load(imageUrl)
                 .into(holder.pic);
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Context context = holder.itemView.getContext();
-//                Intent intent = new Intent(context, BuildingInformationActivity.class);
-//                // 傳送 buildingAbbreviation 到 BuildingInformationActivity
-//                intent.putExtra("buildingAbbreviation", items.get(position).getBuildingAbbreviation());
-//                context.startActivity(intent);
-//            }
-//        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context context = holder.itemView.getContext();
+                Intent intent = new Intent(context, RestaurantInformationActivity.class);
+                // 傳送 title 到 RestaurantsInformationActivity
+                intent.putExtra("title", items.get(position).getTitle());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
