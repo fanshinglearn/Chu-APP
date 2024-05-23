@@ -55,6 +55,9 @@
             android:name=".Activity.RestaurantsActivity">
         </activity>
         <activity
+            android:name=".Activity.RestaurantInformationActivity">
+        </activity>
+        <activity
             android:name=".Activity.TransportationActivity">
         </activity>
         <activity
