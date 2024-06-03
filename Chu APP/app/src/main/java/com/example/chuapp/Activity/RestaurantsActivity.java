@@ -26,6 +26,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class RestaurantsActivity extends AppCompatActivity {
@@ -66,6 +68,9 @@ public class RestaurantsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            int totalItems = task.getResult().size();
+                            AtomicInteger completedItems = new AtomicInteger(0);
+
                             for (DocumentSnapshot document : task.getResult()) {
                                 String restaurantName = document.getId();
 
@@ -76,21 +81,42 @@ public class RestaurantsActivity extends AppCompatActivity {
                                 FirebaseStorage storage = FirebaseStorage.getInstance();
                                 StorageReference storageRef = storage.getReference().child(imagePath);
                                 storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri uri) {
-                                        // 將下載的 URL 傳給 RestaurantsDomain
-                                        itemsArrayList.add(new RestaurantsDomain(restaurantName, uri));
-                                        setRecyclerView(recyclerView, itemsArrayList);
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        // 找不到圖片，使用預設圖片
-                                        Uri defaultImageUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.default_image);
-                                        itemsArrayList.add(new RestaurantsDomain(restaurantName, defaultImageUri));
-                                        setRecyclerView(recyclerView, itemsArrayList);
-                                    }
-                                });
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                // 將下載的 URL 傳給 RestaurantsDomain
+                                                itemsArrayList.add(new RestaurantsDomain(restaurantName, uri));
+
+                                                if (completedItems.incrementAndGet() == totalItems) {
+                                                    // 在所有圖片載入完成後進行排序與設置 RecyclerView
+                                                    Collections.sort(itemsArrayList, new Comparator<RestaurantsDomain>() {
+                                                        @Override
+                                                        public int compare(RestaurantsDomain rd1, RestaurantsDomain rd2) {
+                                                            return rd1.getTitle().compareTo(rd2.getTitle());
+                                                        }
+                                                    });
+                                                    setRecyclerView(recyclerView, itemsArrayList);
+                                                }
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                // 找不到圖片，使用預設圖片
+                                                Uri defaultImageUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.default_image);
+                                                itemsArrayList.add(new RestaurantsDomain(restaurantName, defaultImageUri));
+
+                                                if (completedItems.incrementAndGet() == totalItems) {
+                                                    // 在所有圖片載入完成後進行排序與設置 RecyclerView
+                                                    Collections.sort(itemsArrayList, new Comparator<RestaurantsDomain>() {
+                                                        @Override
+                                                        public int compare(RestaurantsDomain rd1, RestaurantsDomain rd2) {
+                                                            return rd1.getTitle().compareTo(rd2.getTitle());
+                                                        }
+                                                    });
+                                                    setRecyclerView(recyclerView, itemsArrayList);
+                                                }
+                                            }
+                                        });
                             }
                         } else {
                             // 處理失敗情況

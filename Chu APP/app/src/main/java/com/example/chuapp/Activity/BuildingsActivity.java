@@ -35,6 +35,8 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class BuildingsActivity extends AppCompatActivity {
@@ -90,8 +92,17 @@ public class BuildingsActivity extends AppCompatActivity {
                                         // 將下載的 URL 傳給 BuildingsDomain
                                         itemsArrayList.add(new BuildingsDomain(buildingName, uri, buildingAbbreviation));
 
+                                        // 在所有圖片被下載完成之後進行排序
                                         if (completedItems.incrementAndGet() == totalItems) {
-                                            // 在完成所有圖片的加載後設置 RecyclerView
+                                            // 使用 Collections.sort 對 itemsArrayList 進行排序
+                                            Collections.sort(itemsArrayList, new Comparator<BuildingsDomain>() {
+                                                @Override
+                                                public int compare(BuildingsDomain bd1, BuildingsDomain bd2) {
+                                                    return bd1.getTitle().compareTo(bd2.getTitle());
+                                                }
+                                            });
+
+                                            // 向 RecyclerView 設定排序後的 itemsArrayList
                                             setRecyclerView(itemsArrayList);
                                         }
                                     }
