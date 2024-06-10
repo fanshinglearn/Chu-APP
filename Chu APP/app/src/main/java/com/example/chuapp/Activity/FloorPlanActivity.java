@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.example.chuapp.R;
 import com.example.chuapp.databinding.ActivityBuildingsInformationBinding;
+import com.example.chuapp.databinding.ActivityFloorPlanBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -26,14 +27,14 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.Map;
 
-public class BuildingInformationActivity extends AppCompatActivity {
-    ActivityBuildingsInformationBinding binding;
+public class FloorPlanActivity extends AppCompatActivity {
+    ActivityFloorPlanBinding binding;
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityBuildingsInformationBinding.inflate(getLayoutInflater());
+        binding = ActivityFloorPlanBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         db = FirebaseFirestore.getInstance();
@@ -46,44 +47,16 @@ public class BuildingInformationActivity extends AppCompatActivity {
             }
         });
 
-        binding.shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareBuildingInformation(IntentBuildingAbbreviation.toUpperCase());
-            }
-        });
+        TextView buildingNameTextView = findViewById(R.id.floorPlanTxt);
+        buildingNameTextView.setText(IntentBuildingAbbreviation);
 
-        binding.floorPlanBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BuildingInformationActivity.this, FloorPlanActivity.class);
-                intent.putExtra("buildingAbbreviation", IntentBuildingAbbreviation);
-                startActivity(intent);
-            }
-        });
+//        getFloorPlanInformation(IntentBuildingAbbreviation);
 
-
-        getBuildingInformation(IntentBuildingAbbreviation);
-
-        Window window = BuildingInformationActivity.this.getWindow();
-        window.setStatusBarColor(ContextCompat.getColor(BuildingInformationActivity.this, R.color.black));
-
+        Window window = FloorPlanActivity.this.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(FloorPlanActivity.this, R.color.black));
     }
 
-    private void shareBuildingInformation(String buildingAbbreviation) {
-        // 創建要分享的文本內容
-        String shareText = "這是中華大學 " + buildingAbbreviation + "棟 的信息！";
-
-        // 創建 Intent 來執行分享操作
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-
-        // 啟動分享操作
-        startActivity(Intent.createChooser(shareIntent, "分享建築物信息"));
-    }
-
-    private void getBuildingInformation(String buildingAbbreviation) {
+    private void getFloorPlanInformation(String buildingAbbreviation) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("buildings").document(buildingAbbreviation);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

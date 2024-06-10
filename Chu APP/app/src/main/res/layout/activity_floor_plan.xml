@@ -48,7 +48,7 @@
             android:id="@+id/floorPlanTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="建築物"
+            android:text="建築物名稱 -1F"
             android:textSize="24sp"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -68,13 +68,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/buildingsView"
+        <com.example.chuapp.Else.FloorPlanImageView
+            android:id="@+id/imageView9"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingStart="4dp">
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/test_floor_plan1" />
 
-        </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
