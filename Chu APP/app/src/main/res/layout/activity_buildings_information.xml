@@ -96,15 +96,15 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/share" />
 
-                    <ImageView
-                        android:id="@+id/floorPlanBtn"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintEnd_toStartOf="@+id/shareBtn"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/floor_plan" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/floorPlanBtn"-->
+<!--                        android:layout_width="30dp"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        android:layout_marginEnd="16dp"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/shareBtn"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/floor_plan" />-->
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

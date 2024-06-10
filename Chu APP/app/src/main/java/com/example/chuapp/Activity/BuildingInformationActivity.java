@@ -53,14 +53,14 @@ public class BuildingInformationActivity extends AppCompatActivity {
             }
         });
 
-        binding.floorPlanBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(BuildingInformationActivity.this, FloorPlanActivity.class);
-                intent.putExtra("buildingAbbreviation", IntentBuildingAbbreviation);
-                startActivity(intent);
-            }
-        });
+//        binding.floorPlanBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(BuildingInformationActivity.this, FloorPlanActivity.class);
+//                intent.putExtra("buildingAbbreviation", IntentBuildingAbbreviation);
+//                startActivity(intent);
+//            }
+//        });
 
 
         getBuildingInformation(IntentBuildingAbbreviation);
