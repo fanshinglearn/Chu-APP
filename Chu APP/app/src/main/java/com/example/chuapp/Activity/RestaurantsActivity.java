@@ -60,6 +60,14 @@ public class RestaurantsActivity extends AppCompatActivity {
     private void initRecyclerView(RecyclerView recyclerView, String collectionName) {
         ArrayList<RestaurantsDomain> itemsArrayList = new ArrayList<>();
 
+        // 首先填充占位符图片
+        Uri placeholderUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.default_image);
+        for (int i = 0; i < 10; i++) {
+            itemsArrayList.add(new RestaurantsDomain("Loading...", placeholderUri));
+        }
+
+        setRecyclerView(recyclerView, itemsArrayList);
+
         db.collection("restaurant_locations")
                 .document(collectionName)
                 .collection("restaurants")
@@ -70,6 +78,8 @@ public class RestaurantsActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             int totalItems = task.getResult().size();
                             AtomicInteger completedItems = new AtomicInteger(0);
+
+                            itemsArrayList.clear(); // 清空占位符图片
 
                             for (DocumentSnapshot document : task.getResult()) {
                                 String restaurantName = document.getId();
