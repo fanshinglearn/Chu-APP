@@ -16,4 +16,5 @@
     <color name="button7">#e0e0e0</color>
     <color name="button8">#ffa0a0</color>
     <color name="map_color">#e0e8d3</color>
+    <color name="about_gray_text">#969696</color>
 </resources>

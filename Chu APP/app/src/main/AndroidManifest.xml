@@ -66,6 +66,9 @@
         <activity
             android:name=".Activity.EventsActivity">
         </activity>
+        <activity
+            android:name=".Activity.AboutActivity">
+        </activity>
     </application>
 
 </manifest>

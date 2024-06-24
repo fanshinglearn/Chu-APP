@@ -152,7 +152,6 @@
                         android:layout_marginEnd="16dp"
                         android:background="@drawable/main_screen_button"
                         android:backgroundTint="@color/white"
-                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/button6" />
 
@@ -260,18 +259,18 @@
                         app:layout_constraintEnd_toEndOf="@+id/button8"
                         app:layout_constraintStart_toStartOf="@+id/button8" />
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/textView13"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginBottom="8dp"-->
-<!--                        android:elevation="4dp"-->
-<!--                        android:text="活動資訊"-->
-<!--                        android:textColor="@color/black"-->
-<!--                        android:textSize="14sp"-->
-<!--                        app:layout_constraintBottom_toBottomOf="@+id/button9"-->
-<!--                        app:layout_constraintEnd_toEndOf="@+id/button9"-->
-<!--                        app:layout_constraintStart_toStartOf="@+id/button9" />-->
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:elevation="4dp"
+                        android:text="關於"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/button9"
+                        app:layout_constraintEnd_toEndOf="@+id/button9"
+                        app:layout_constraintStart_toStartOf="@+id/button9" />
 
                     <ImageView
                         android:id="@+id/imageView1"
@@ -361,16 +360,16 @@
                         app:layout_constraintTop_toTopOf="@+id/button8"
                         app:srcCompat="@drawable/activity" />
 
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imageView9"-->
-<!--                        android:layout_width="40dp"-->
-<!--                        android:layout_height="40dp"-->
-<!--                        android:elevation="4dp"-->
-<!--                        app:layout_constraintBottom_toBottomOf="@+id/button9"-->
-<!--                        app:layout_constraintEnd_toEndOf="@+id/button9"-->
-<!--                        app:layout_constraintStart_toStartOf="@+id/button9"-->
-<!--                        app:layout_constraintTop_toTopOf="@+id/button9"-->
-<!--                        app:srcCompat="@drawable/website" />-->
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:elevation="4dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/button9"
+                        app:layout_constraintEnd_toEndOf="@+id/button9"
+                        app:layout_constraintStart_toStartOf="@+id/button9"
+                        app:layout_constraintTop_toTopOf="@+id/button9"
+                        app:srcCompat="@drawable/about" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
