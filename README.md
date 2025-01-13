@@ -14,38 +14,38 @@
 
 ### 主畫面
 
-<img src="images/主畫面.jpg" alt="主畫面" width="400">
+<img src="images/主畫面.jpg" alt="主畫面" width="200">
 
 ### 最新消息
 
-<img src="images/最新消息.jpg" alt="主畫面" width="400">
+<img src="images/最新消息.jpg" alt="主畫面" width="200">
 
 ### 即時新聞
 
-<img src="images/即時新聞.jpg" alt="主畫面" width="400">
+<img src="images/即時新聞.jpg" alt="主畫面" width="200">
 
 ### 媒體報導
 
-<img src="images/媒體報導.jpg" alt="主畫面" width="400">
+<img src="images/媒體報導.jpg" alt="主畫面" width="200">
 
 ### 建築物
 
-<img src="images/建築物1.jpg" alt="主畫面" width="400">
-<img src="images/建築物2.jpg" alt="主畫面" width="400">
+<img src="images/建築物1.jpg" alt="主畫面" width="200">
+<img src="images/建築物2.jpg" alt="主畫面" width="200">
 
 ### 校園地圖
 
-<img src="images/校園地圖.jpg" alt="主畫面" width="400">
+<img src="images/校園地圖.jpg" alt="主畫面" width="200">
 
 ### 校園美食
 
-<img src="images/校園美食1.jpg" alt="主畫面" width="400">
-<img src="images/校園美食2.jpg" alt="主畫面" width="400">
+<img src="images/校園美食1.jpg" alt="主畫面" width="200">
+<img src="images/校園美食2.jpg" alt="主畫面" width="200">
 
 ### 交通資訊
 
-<img src="images/交通資訊.jpg" alt="主畫面" width="400">
+<img src="images/交通資訊.jpg" alt="主畫面" width="200">
 
 ### 活動資訊
 
-<img src="images/活動資訊.jpg" alt="主畫面" width="400">
+<img src="images/活動資訊.jpg" alt="主畫面" width="200">
