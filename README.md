@@ -14,38 +14,38 @@
 
 ### 主畫面
 
-![APP畫面](images/主畫面.jpg)
+<img src="images/主畫面.jpg" alt="主畫面" width="400">
 
 ### 最新消息
 
-![APP畫面](images/最新消息.jpg)
+<img src="images/最新消息.jpg" alt="主畫面" width="400">
 
 ### 即時新聞
 
-![APP畫面](images/即時新聞.jpg)
+<img src="images/即時新聞.jpg" alt="主畫面" width="400">
 
 ### 媒體報導
 
-![APP畫面](images/媒體報導.jpg)
+<img src="images/媒體報導.jpg" alt="主畫面" width="400">
 
 ### 建築物
 
-![APP畫面](images/建築物1.jpg)
-![APP畫面](images/建築物2.jpg)
+<img src="images/建築物1.jpg" alt="主畫面" width="400">
+<img src="images/建築物2.jpg" alt="主畫面" width="400">
 
 ### 校園地圖
 
-![APP畫面](images/校園地圖.jpg)
+<img src="images/校園地圖.jpg" alt="主畫面" width="400">
 
 ### 校園美食
 
-![APP畫面](images/校園美食1.jpg)
-![APP畫面](images/校園美食2.jpg)
+<img src="images/校園美食1.jpg" alt="主畫面" width="400">
+<img src="images/校園美食2.jpg" alt="主畫面" width="400">
 
 ### 交通資訊
 
-![APP畫面](images/交通資訊.jpg)
+<img src="images/交通資訊.jpg" alt="主畫面" width="400">
 
 ### 活動資訊
 
-![APP畫面](images/活動資訊.jpg)
+<img src="images/活動資訊.jpg" alt="主畫面" width="400">
